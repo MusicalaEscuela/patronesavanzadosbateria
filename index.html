@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Patrones de Batería 🥁 · Musicala</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+  <!-- Logo -->
+  <img
+    src="https://static.wixstatic.com/media/85afce_3adb3865c88a492b93a8bf2dc69049c3~mv2.png"
+    alt="Logo Musicala"
+    class="logo"
+  />
+
+  <div class="container">
+    <header>
+      <h1>Patrones de Batería 🥁</h1>
+      <p>Practica progresivamente patrones con <strong>B</strong> (Bombo), <strong>R</strong> (Redoblante) y <strong>P</strong> (Platillo). Marca lo que ya trabajaste y vuelve cuando quieras: queda guardado en tu navegador.</p>
+    </header>
+
+    <!-- Controles globales -->
+    <section class="top-bar">
+      <div class="tempo-control">
+        <h3>🎚️ BPM</h3>
+        <input type="range" id="tempo-slider" min="60" max="200" value="120">
+        <div class="tempo-line"><span>Tempo Actual:</span> <strong id="tempo-display">120</strong> BPM</div>
+      </div>
+
+      <div class="toggle-wrap">
+        <label class="toggle">
+          <input type="checkbox" id="only-unpracticed">
+          <span></span> Mostrar solo <b>no practicados</b>
+        </label>
+      </div>
+
+      <button class="stop" onclick="pararReproduccion()">Parar</button>
+    </section>
+
+    <!-- Tabs -->
+    <nav class="tabs">
+      <button class="tab active" data-tab="len2">2 golpes</button>
+      <button class="tab" data-tab="len3">3 golpes</button>
+      <button class="tab" data-tab="len4">4 golpes</button>
+      <button class="tab" data-tab="creador">Creador</button>
+    </nav>
+
+    <!-- Panel: 2 golpes -->
+    <section class="tab-panel active" id="panel-len2">
+      <h2>🎯 Patrones de 2 golpes</h2>
+      <div class="filters small">
+        <button onclick="renderGeneradosPorLongitud(2)">Refrescar</button>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>Compás</th>
+            <th>Secuencia</th>
+            <th>Partitura</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody id="tbody-len2"><tr><td colspan="4">Cargando…</td></tr></tbody>
+      </table>
+    </section>
+
+    <!-- Panel: 3 golpes -->
+    <section class="tab-panel" id="panel-len3">
+      <h2>🎯 Patrones de 3 golpes</h2>
+      <div class="filters small">
+        <button onclick="renderGeneradosPorLongitud(3)">Refrescar</button>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>Compás</th>
+            <th>Secuencia</th>
+            <th>Partitura</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody id="tbody-len3"><tr><td colspan="4">Cargando…</td></tr></tbody>
+      </table>
+    </section>
+
+    <!-- Panel: 4 golpes -->
+    <section class="tab-panel" id="panel-len4">
+      <h2>🎯 Patrones de 4 golpes</h2>
+      <div class="filters small">
+        <button onclick="renderGeneradosPorLongitud(4)">Refrescar</button>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>Compás</th>
+            <th>Secuencia</th>
+            <th>Partitura</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody id="tbody-len4"><tr><td colspan="4">Cargando…</td></tr></tbody>
+      </table>
+    </section>
+
+    <!-- Panel: Creador -->
+    <section class="tab-panel" id="panel-creador">
+      <h2>📝 Creador de Patrones</h2>
+      <p>Arma tu secuencia, mírala en partitura y prácticala al tempo que prefieras.</p>
+      <div id="custom-pattern" class="creator-buttons">
+        <button onclick="agregarAlPatron('B')">Bombo (B)</button>
+        <button onclick="agregarAlPatron('R')">Redoblante (R)</button>
+        <button onclick="agregarAlPatron('P')">Platillo (P)</button>
+        <button onclick="limpiarPatron()">Limpiar</button>
+        <button onclick="reproducirPatronPersonalizado()">Reproducir</button>
+        <button class="stop" onclick="pararReproduccion()">Parar</button>
+      </div>
+      <p>Patrón Actual: <span id="current-pattern">Ningún golpe seleccionado</span></p>
+      <div id="custom-score" class="score-wrap"></div>
+    </section>
+
+    <footer>
+      <p class="copyright">© 2025 Musicala. Todos los derechos reservados.</p>
+    </footer>
+  </div>
+
+  <!-- Batería fija/animada -->
+  <section class="drum-kit">
+    <div class="drum bombo" id="bombo">B</div>
+    <div class="drum redoblante" id="redoblante">R</div>
+    <div class="drum platillo" id="platillo">P</div>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>
